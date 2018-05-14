@@ -1,6 +1,11 @@
 extern crate num;
+extern crate image;
+
 use num::Complex;
 use std::str::FromStr;
+use image::ColorType;
+use image::png::PNGEncoder;
+use std::fs::File;
 
 fn main() {
     println!("Hello, world!");
@@ -116,6 +121,18 @@ fn render(pixels: &mut [u8], bounds: (usize, usize), upper_left: Complex<f64>, l
                 };
         }
     }
+}
+
+/// Wrtie the buffer `pixels`, whose dimensions are given by `bounds`, to the
+/// file named `filename`.
+fn write_image (filename: &str, pixels: &[u8], bounds: (usize, usize)) -> Result<(), std::io::Error>
+{
+    let output = File::create(filename)?;
+
+    let encoder = PNGEncoder::new(output);
+    encoder.encode(&pixels, bounds.0 as u32, bounds.1 as u32, ColorType::Gray(8))?;
+
+    Ok(())
 }
 
 #[test]
