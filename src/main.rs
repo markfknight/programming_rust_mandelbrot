@@ -6,6 +6,7 @@ use std::str::FromStr;
 use image::ColorType;
 use image::png::PNGEncoder;
 use std::fs::File;
+use std::io::Result;
 
 fn main() {
     println!("Hello, world!");
@@ -125,7 +126,7 @@ fn render(pixels: &mut [u8], bounds: (usize, usize), upper_left: Complex<f64>, l
 
 /// Wrtie the buffer `pixels`, whose dimensions are given by `bounds`, to the
 /// file named `filename`.
-fn write_image (filename: &str, pixels: &[u8], bounds: (usize, usize)) -> Result<(), std::io::Error>
+fn write_image (filename: &str, pixels: &[u8], bounds: (usize, usize)) -> Result<()>
 {
     let output = File::create(filename)?;
 
