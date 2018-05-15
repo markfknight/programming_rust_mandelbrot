@@ -1,4 +1,4 @@
-### Mandelbrot Image Generator
+### Mandelbrot Image Generator
 
 Mandelbrot image genrator from the cuncurrency section of Chaper 2 of [Programming Rust](http://shop.oreilly.com/product/0636920040385.do)
 
